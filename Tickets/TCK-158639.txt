@@ -1,0 +1,13 @@
+--------------- BUS TICKET ---------------
+Ticket ID: TCK-158639
+Passenger: adina
+Phone: 345234623
+Source: Pune
+Destination: Mumbai
+Journey Date: 30-10-2025
+Departure Time: 06:00 AM
+Seat Type: Regular
+Seat Number: A3
+Payment Mode: Cash
+Total Fare: ₹300
+------------------------------------------

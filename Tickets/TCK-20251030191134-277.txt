@@ -1,0 +1,20 @@
+--------------------------------------------------
+                BUS TICKET RECEIPT
+--------------------------------------------------
+
+Ticket ID   : TCK-20251030191134-277
+Passenger   : adina hawaldar  |  849023748293
+From        : Pune
+To          : Goa
+Journey Date: 30-10-2025
+Departure   : 10:00 am
+Estimated Arrival : 08:00 pm
+Seat Type   : Sleeper
+Seat No.    : G16
+Passengers  : 1
+Payment Mode: UPI (simulate)
+Total Fare  : ₹1400
+
+Have a safe journey!
+--------------------------------------------------
+Saved: Tickets/TCK-20251030191134-277.txt

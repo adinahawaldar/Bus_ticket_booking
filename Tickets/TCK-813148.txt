@@ -1,0 +1,15 @@
+╔══════════════════════════════════════╗
+║           BUS TICKET RECEIPT         ║
+╠══════════════════════════════════════╣
+║  Ticket ID: TCK-813148                ║
+║  Passenger: adina                     ║
+║  Phone: 48723984                     ║
+║  Route: Pune to Mumbai             ║
+║  Date: 30-10-2025                   ║
+║  Time: 06:00 AM                     ║
+║  Seat: Regular (16C)              ║
+║  Payment: UPI                       ║
+║  Total Fare: ₹300                   ║
+╠══════════════════════════════════════╣
+║        Thank You & Safe Journey!     ║
+╚══════════════════════════════════════╝
