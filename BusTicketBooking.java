@@ -14,14 +14,13 @@ public class BusTicketBooking extends JFrame {
     private JLabel lblFare;
 
     public BusTicketBooking() {
-        setTitle("🚌 Bus Ticket Booking System");
+        setTitle(" Bus Ticket Booking System");
         setSize(950, 750);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         setLayout(null);
         setResizable(false);
 
-        // Background panel with gradient
         JPanel bgPanel = new JPanel() {
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
@@ -33,7 +32,6 @@ public class BusTicketBooking extends JFrame {
                 g2.setPaint(gp);
                 g2.fillRect(0, 0, getWidth(), getHeight());
 
-                // Subtle decorative glow
                 g2.setColor(new Color(255, 255, 255, 30));
                 for (int i = 0; i < 40; i++) {
                     int x = (int) (Math.random() * getWidth());
@@ -45,7 +43,6 @@ public class BusTicketBooking extends JFrame {
         bgPanel.setLayout(null);
         setContentPane(bgPanel);
 
-        // Header panel
         JPanel header = new JPanel() {
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
@@ -61,14 +58,13 @@ public class BusTicketBooking extends JFrame {
         header.setBorder(BorderFactory.createMatteBorder(0, 0, 2, 0, Color.WHITE));
         bgPanel.add(header);
 
-        JLabel title = new JLabel("🚌 Bus Ticket Booking System", JLabel.CENTER);
+        JLabel title = new JLabel("Bus Ticket Booking System", JLabel.CENTER);
         title.setFont(new Font("Segoe UI Black", Font.BOLD, 34));
         title.setForeground(Color.WHITE);
         title.setBorder(BorderFactory.createEmptyBorder(10, 0, 10, 0));
         title.setOpaque(false);
         header.add(title);
 
-        // Card Panel (Main form)
         JPanel card = new JPanel();
         card.setLayout(null);
         card.setBackground(new Color(255, 255, 255, 245));
@@ -81,8 +77,7 @@ public class BusTicketBooking extends JFrame {
 
         int labelX = 60, fieldX = 260, y = 40, gap = 70;
 
-        // Passenger Name
-        JLabel lblName = createStyledLabel("👤 Passenger Name:");
+        JLabel lblName = createStyledLabel(" Passenger Name:");
         lblName.setBounds(labelX, y, 180, 25);
         card.add(lblName);
         txtName = createRoundedTextField();
@@ -90,8 +85,7 @@ public class BusTicketBooking extends JFrame {
         card.add(txtName);
 
         y += gap;
-        // Phone Number
-        JLabel lblPhone = createStyledLabel("📱 Phone Number:");
+        JLabel lblPhone = createStyledLabel(" Phone Number:");
         lblPhone.setBounds(labelX, y, 180, 25);
         card.add(lblPhone);
         txtPhone = createRoundedTextField();
@@ -99,8 +93,7 @@ public class BusTicketBooking extends JFrame {
         card.add(txtPhone);
 
         y += gap;
-        // Source and Destination
-        JLabel lblSource = createStyledLabel("📍 Source:");
+        JLabel lblSource = createStyledLabel(" Source:");
         lblSource.setBounds(labelX, y, 180, 25);
         card.add(lblSource);
 
@@ -110,7 +103,7 @@ public class BusTicketBooking extends JFrame {
         sourceBox.setBounds(fieldX, y, 200, 40);
         card.add(sourceBox);
 
-        JLabel lblDest = createStyledLabel("🎯 Destination:");
+        JLabel lblDest = createStyledLabel(" Destination:");
         lblDest.setBounds(fieldX + 220, y, 120, 25);
         card.add(lblDest);
         destinationBox = createRoundedComboBox(cities);
@@ -119,7 +112,7 @@ public class BusTicketBooking extends JFrame {
 
         y += gap;
         // Date & Time
-        JLabel lblDate = createStyledLabel("📅 Journey Date:");
+        JLabel lblDate = createStyledLabel(" Journey Date:");
         lblDate.setBounds(labelX, y, 180, 25);
         card.add(lblDate);
         txtDate = createRoundedTextField();
@@ -127,7 +120,7 @@ public class BusTicketBooking extends JFrame {
         txtDate.setBounds(fieldX, y, 200, 40);
         card.add(txtDate);
 
-        JLabel lblTime = createStyledLabel("⏰ Departure Time:");
+        JLabel lblTime = createStyledLabel(" Departure Time:");
         lblTime.setBounds(fieldX + 220, y, 150, 25);
         card.add(lblTime);
         String[] times = {"06:00 AM", "09:00 AM", "12:00 PM", "03:00 PM", "06:00 PM", "09:00 PM"};
@@ -136,7 +129,6 @@ public class BusTicketBooking extends JFrame {
         card.add(timeBox);
 
         y += gap;
-        // Passengers & Seat Type
         JLabel lblPassengers = createStyledLabel("👥 No. of Passengers:");
         lblPassengers.setBounds(labelX, y, 180, 25);
         card.add(lblPassengers);
@@ -145,7 +137,7 @@ public class BusTicketBooking extends JFrame {
         txtPassengers.setBounds(fieldX, y, 80, 40);
         card.add(txtPassengers);
 
-        JLabel lblSeat = createStyledLabel("💺 Seat Type:");
+        JLabel lblSeat = createStyledLabel(" Seat Type:");
         lblSeat.setBounds(fieldX + 100, y, 100, 25);
         card.add(lblSeat);
         String[] seatTypes = {"Regular", "AC", "Sleeper"};
@@ -153,7 +145,7 @@ public class BusTicketBooking extends JFrame {
         seatTypeBox.setBounds(fieldX + 190, y, 120, 40);
         card.add(seatTypeBox);
 
-        lblFare = createStyledLabel("💰 Total Fare (₹):");
+        lblFare = createStyledLabel(" Total Fare (₹):");
         lblFare.setBounds(fieldX + 330, y, 120, 25);
         card.add(lblFare);
         txtFare = createRoundedTextField();
@@ -162,30 +154,28 @@ public class BusTicketBooking extends JFrame {
         txtFare.setBounds(fieldX + 450, y, 130, 40);
         card.add(txtFare);
 
-        // Buttons and Payment
         y += 100;
-        JLabel lblPayment = createStyledLabel("💳 Payment Mode:");
+        JLabel lblPayment = createStyledLabel(" Payment Mode:");
         lblPayment.setBounds(100, y, 180, 25);
         card.add(lblPayment);
         paymentBox = createRoundedComboBox(new String[]{"Cash", "UPI", "Card"});
         paymentBox.setBounds(250, y - 5, 150, 40);
         card.add(paymentBox);
 
-        btnCalculate = createRoundedButton("💰 Calculate Fare", new Color(255, 152, 0), new Color(255, 87, 34));
+        btnCalculate = createRoundedButton(" Calculate Fare", new Color(255, 152, 0), new Color(255, 87, 34));
         btnCalculate.setBounds(420, y - 5, 170, 40);
         card.add(btnCalculate);
 
-        btnBook = createRoundedButton("✅ Book Ticket", new Color(76, 175, 80), new Color(56, 142, 60));
+        btnBook = createRoundedButton(" Book Ticket", new Color(76, 175, 80), new Color(56, 142, 60));
         btnBook.setBounds(610, y - 5, 170, 40);
         card.add(btnBook);
 
-        JLabel footer = new JLabel("🎫 Safe Travels with Our Bus Service! 🎫", JLabel.CENTER);
+        JLabel footer = new JLabel(" Safe Travels with Our Bus Service! ", JLabel.CENTER);
         footer.setFont(new Font("Segoe UI", Font.ITALIC, 16));
         footer.setForeground(Color.WHITE);
         footer.setBounds(0, 700, getWidth(), 30);
         bgPanel.add(footer);
 
-        // Action listeners
         btnCalculate.addActionListener(e -> calculateFare());
         btnBook.addActionListener(e -> bookTicket());
     }
@@ -244,7 +234,6 @@ public class BusTicketBooking extends JFrame {
         return btn;
     }
 
-    // --- Functionality ---
     private void calculateFare() {
         try {
             String source = (String) sourceBox.getSelectedItem();
@@ -303,7 +292,7 @@ public class BusTicketBooking extends JFrame {
 
         String ticket = String.format("""
                 ╔════════════════════════════════════════════════════╗
-                ║                  🚌 BUS TICKET RECEIPT             ║
+                ║                     BUS TICKET RECEIPT             ║
                 ╠════════════════════════════════════════════════════╣
                 ║  Ticket ID: %-40s║
                 ║  Passenger: %-40s║
@@ -315,7 +304,7 @@ public class BusTicketBooking extends JFrame {
                 ║  Payment: %-40s║
                 ║  Total Fare: %-38s║
                 ╠════════════════════════════════════════════════════╣
-                ║         Thank You & Safe Journey! 🌟              ║
+                ║         Thank You & Safe Journey!                  ║
                 ╚════════════════════════════════════════════════════╝
                 """, ticketID, name, phone, source, dest, date, time, seat, seatNum, pay, fare);
 
