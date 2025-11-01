@@ -1,0 +1,15 @@
+╔══════════════════════════════════════╗
+║           BUS TICKET RECEIPT         ║
+╠══════════════════════════════════════╣
+║  Ticket ID: TCK-958912                ║
+║  Passenger: adina                     ║
+║  Phone: 8746539884                   ║
+║  Route: Pune to Mumbai             ║
+║  Date: 30-10-2025                   ║
+║  Time: 06:00 AM                     ║
+║  Seat: Regular (30E)              ║
+║  Payment: Cash                      ║
+║  Total Fare: ₹300                   ║
+╠══════════════════════════════════════╣
+║        Thank You & Safe Journey!     ║
+╚══════════════════════════════════════╝

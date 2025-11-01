@@ -8,7 +8,6 @@ import java.util.Random;
 
 public class BusTicketBooking extends JFrame {
 
-    // Declare text fields
     private JTextField txtName, txtPhone, txtDate, txtPassengers, txtFare;
     private JComboBox<String> sourceBox, destinationBox, seatTypeBox, timeBox, paymentBox;
     private JButton btnCalculate, btnBook;
@@ -16,88 +15,87 @@ public class BusTicketBooking extends JFrame {
 
     public BusTicketBooking() {
         setTitle("🚌 Bus Ticket Booking System");
-        setSize(900, 750);
+        setSize(950, 750);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
         setLayout(null);
         setResizable(false);
 
-        // Modern gradient background
+        // Background panel with gradient
         JPanel bgPanel = new JPanel() {
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
-                Graphics2D g2d = (Graphics2D) g;
-                GradientPaint gp = new GradientPaint(0, 0, new Color(32, 0, 77),
-                        getWidth(), getHeight(), new Color(93, 33, 170));
-                g2d.setPaint(gp);
-                g2d.fillRect(0, 0, getWidth(), getHeight());
+                Graphics2D g2 = (Graphics2D) g;
+                GradientPaint gp = new GradientPaint(0, 0,
+                        new Color(63, 81, 181),
+                        getWidth(), getHeight(),
+                        new Color(156, 39, 176));
+                g2.setPaint(gp);
+                g2.fillRect(0, 0, getWidth(), getHeight());
 
-                // Decorative elements
-                g2d.setColor(new Color(255, 255, 255, 20));
-                for (int i = 0; i < 50; i++) {
+                // Subtle decorative glow
+                g2.setColor(new Color(255, 255, 255, 30));
+                for (int i = 0; i < 40; i++) {
                     int x = (int) (Math.random() * getWidth());
                     int y = (int) (Math.random() * getHeight());
-                    int size = (int) (Math.random() * 3) + 1;
-                    g2d.fillOval(x, y, size, size);
+                    g2.fillOval(x, y, 4, 4);
                 }
             }
         };
         bgPanel.setLayout(null);
         setContentPane(bgPanel);
 
-        // Header
-        JPanel headerPanel = new JPanel();
-        headerPanel.setLayout(null);
-        headerPanel.setBackground(new Color(103, 58, 183, 200));
-        headerPanel.setBounds(0, 0, getWidth(), 80);
-        headerPanel.setBorder(BorderFactory.createMatteBorder(0, 0, 2, 0, new Color(255, 215, 0)));
-        bgPanel.add(headerPanel);
-
-        JLabel title = new JLabel("🚌 Bus Ticket Booking System", JLabel.CENTER);
-        title.setFont(new Font("Segoe UI", Font.BOLD, 32));
-        title.setForeground(Color.WHITE);
-        title.setBounds(0, 10, getWidth(), 60);
-        headerPanel.add(title);
-
-        // Card panel
-        JPanel card = new JPanel() {
+        // Header panel
+        JPanel header = new JPanel() {
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
-                Graphics2D g2d = (Graphics2D) g;
-                g2d.setColor(new Color(103, 58, 183, 5));
-                for (int i = 0; i < getWidth(); i += 20) {
-                    for (int j = 0; j < getHeight(); j += 20) {
-                        g2d.fillRect(i, j, 1, 1);
-                    }
-                }
+                Graphics2D g2 = (Graphics2D) g;
+                GradientPaint gp = new GradientPaint(0, 0, new Color(106, 27, 154),
+                        getWidth(), getHeight(), new Color(63, 81, 181));
+                g2.setPaint(gp);
+                g2.fillRoundRect(0, 0, getWidth(), getHeight(), 20, 20);
             }
         };
+        header.setLayout(new BorderLayout());
+        header.setBounds(0, 0, getWidth(), 90);
+        header.setBorder(BorderFactory.createMatteBorder(0, 0, 2, 0, Color.WHITE));
+        bgPanel.add(header);
+
+        JLabel title = new JLabel("🚌 Bus Ticket Booking System", JLabel.CENTER);
+        title.setFont(new Font("Segoe UI Black", Font.BOLD, 34));
+        title.setForeground(Color.WHITE);
+        title.setBorder(BorderFactory.createEmptyBorder(10, 0, 10, 0));
+        title.setOpaque(false);
+        header.add(title);
+
+        // Card Panel (Main form)
+        JPanel card = new JPanel();
         card.setLayout(null);
-        card.setBackground(new Color(255, 255, 255, 250));
-        card.setBounds(50, 100, 800, 580);
+        card.setBackground(new Color(255, 255, 255, 245));
+        card.setBounds(60, 120, 830, 550);
         card.setBorder(BorderFactory.createCompoundBorder(
                 BorderFactory.createLineBorder(new Color(200, 200, 255), 2),
-                BorderFactory.createEmptyBorder(20, 20, 20, 20)
+                BorderFactory.createEmptyBorder(25, 25, 25, 25)
         ));
         bgPanel.add(card);
 
-        int labelX = 60, fieldX = 250, y = 40, gap = 70;
+        int labelX = 60, fieldX = 260, y = 40, gap = 70;
 
         // Passenger Name
         JLabel lblName = createStyledLabel("👤 Passenger Name:");
         lblName.setBounds(labelX, y, 180, 25);
         card.add(lblName);
-        txtName = createStyledTextField();
-        txtName.setBounds(fieldX, y, 450, 35);
+        txtName = createRoundedTextField();
+        txtName.setBounds(fieldX, y, 480, 40);
         card.add(txtName);
 
         y += gap;
-        // Phone
+        // Phone Number
         JLabel lblPhone = createStyledLabel("📱 Phone Number:");
         lblPhone.setBounds(labelX, y, 180, 25);
         card.add(lblPhone);
-        txtPhone = createStyledTextField();
-        txtPhone.setBounds(fieldX, y, 450, 35);
+        txtPhone = createRoundedTextField();
+        txtPhone.setBounds(fieldX, y, 480, 40);
         card.add(txtPhone);
 
         y += gap;
@@ -108,152 +106,145 @@ public class BusTicketBooking extends JFrame {
 
         String[] cities = {"Pune", "Mumbai", "Nagpur", "Nashik", "Kolhapur", "Solapur",
                 "Aurangabad", "Thane", "Satara", "Goa"};
-        sourceBox = createStyledComboBox(cities);
-        sourceBox.setBounds(fieldX, y, 200, 35);
+        sourceBox = createRoundedComboBox(cities);
+        sourceBox.setBounds(fieldX, y, 200, 40);
         card.add(sourceBox);
 
         JLabel lblDest = createStyledLabel("🎯 Destination:");
         lblDest.setBounds(fieldX + 220, y, 120, 25);
         card.add(lblDest);
-        destinationBox = createStyledComboBox(cities);
-        destinationBox.setBounds(fieldX + 340, y, 200, 35);
+        destinationBox = createRoundedComboBox(cities);
+        destinationBox.setBounds(fieldX + 340, y, 200, 40);
         card.add(destinationBox);
 
         y += gap;
-        // Date and Time
+        // Date & Time
         JLabel lblDate = createStyledLabel("📅 Journey Date:");
         lblDate.setBounds(labelX, y, 180, 25);
         card.add(lblDate);
-        txtDate = createStyledTextField();
+        txtDate = createRoundedTextField();
         txtDate.setText(new SimpleDateFormat("dd-MM-yyyy").format(new Date()));
-        txtDate.setBounds(fieldX, y, 200, 35);
+        txtDate.setBounds(fieldX, y, 200, 40);
         card.add(txtDate);
 
         JLabel lblTime = createStyledLabel("⏰ Departure Time:");
         lblTime.setBounds(fieldX + 220, y, 150, 25);
         card.add(lblTime);
         String[] times = {"06:00 AM", "09:00 AM", "12:00 PM", "03:00 PM", "06:00 PM", "09:00 PM"};
-        timeBox = createStyledComboBox(times);
-        timeBox.setBounds(fieldX + 370, y, 150, 35);
+        timeBox = createRoundedComboBox(times);
+        timeBox.setBounds(fieldX + 370, y, 150, 40);
         card.add(timeBox);
 
         y += gap;
-        // Passengers and Seat Type
+        // Passengers & Seat Type
         JLabel lblPassengers = createStyledLabel("👥 No. of Passengers:");
         lblPassengers.setBounds(labelX, y, 180, 25);
         card.add(lblPassengers);
-        txtPassengers = createStyledTextField();
+        txtPassengers = createRoundedTextField();
         txtPassengers.setText("1");
-        txtPassengers.setBounds(fieldX, y, 80, 35);
+        txtPassengers.setBounds(fieldX, y, 80, 40);
         card.add(txtPassengers);
 
         JLabel lblSeat = createStyledLabel("💺 Seat Type:");
         lblSeat.setBounds(fieldX + 100, y, 100, 25);
         card.add(lblSeat);
         String[] seatTypes = {"Regular", "AC", "Sleeper"};
-        seatTypeBox = createStyledComboBox(seatTypes);
-        seatTypeBox.setBounds(fieldX + 190, y, 120, 35);
+        seatTypeBox = createRoundedComboBox(seatTypes);
+        seatTypeBox.setBounds(fieldX + 190, y, 120, 40);
         card.add(seatTypeBox);
 
         lblFare = createStyledLabel("💰 Total Fare (₹):");
         lblFare.setBounds(fieldX + 330, y, 120, 25);
         card.add(lblFare);
-        txtFare = createStyledTextField();
+        txtFare = createRoundedTextField();
         txtFare.setEditable(false);
         txtFare.setBackground(new Color(240, 255, 240));
-        txtFare.setBounds(fieldX + 450, y, 130, 35);
+        txtFare.setBounds(fieldX + 450, y, 130, 40);
         card.add(txtFare);
 
-        // Buttons section
+        // Buttons and Payment
         y += 100;
-        JPanel buttonPanel = new JPanel();
-        buttonPanel.setLayout(new FlowLayout(FlowLayout.CENTER, 30, 0));
-        buttonPanel.setBounds(50, y, 700, 60);
-        buttonPanel.setOpaque(false);
-        card.add(buttonPanel);
-
-        btnCalculate = createStyledButton("💰 Calculate Fare", new Color(255, 152, 0), new Color(255, 87, 34));
-        btnCalculate.setPreferredSize(new Dimension(200, 50));
-        buttonPanel.add(btnCalculate);
-
-        btnBook = createStyledButton("✅ Book Ticket", new Color(76, 175, 80), new Color(56, 142, 60));
-        btnBook.setPreferredSize(new Dimension(200, 50));
-        buttonPanel.add(btnBook);
-
-        JLabel paymentLabel = createStyledLabel("💳 Payment:");
-        paymentLabel.setBounds(580, y + 15, 80, 25);
-        card.add(paymentLabel);
-
-        paymentBox = createStyledComboBox(new String[]{"Cash", "UPI", "Card"});
-        paymentBox.setBounds(660, y + 10, 100, 35);
+        JLabel lblPayment = createStyledLabel("💳 Payment Mode:");
+        lblPayment.setBounds(100, y, 180, 25);
+        card.add(lblPayment);
+        paymentBox = createRoundedComboBox(new String[]{"Cash", "UPI", "Card"});
+        paymentBox.setBounds(250, y - 5, 150, 40);
         card.add(paymentBox);
 
-        // Footer
+        btnCalculate = createRoundedButton("💰 Calculate Fare", new Color(255, 152, 0), new Color(255, 87, 34));
+        btnCalculate.setBounds(420, y - 5, 170, 40);
+        card.add(btnCalculate);
+
+        btnBook = createRoundedButton("✅ Book Ticket", new Color(76, 175, 80), new Color(56, 142, 60));
+        btnBook.setBounds(610, y - 5, 170, 40);
+        card.add(btnBook);
+
         JLabel footer = new JLabel("🎫 Safe Travels with Our Bus Service! 🎫", JLabel.CENTER);
         footer.setFont(new Font("Segoe UI", Font.ITALIC, 16));
         footer.setForeground(Color.WHITE);
         footer.setBounds(0, 700, getWidth(), 30);
         bgPanel.add(footer);
 
-        // Actions
+        // Action listeners
         btnCalculate.addActionListener(e -> calculateFare());
         btnBook.addActionListener(e -> bookTicket());
     }
 
+    // --- UI Components Helpers ---
     private JLabel createStyledLabel(String text) {
         JLabel label = new JLabel(text);
         label.setFont(new Font("Segoe UI", Font.BOLD, 14));
-        label.setForeground(new Color(60, 60, 60));
+        label.setForeground(new Color(40, 40, 70));
         return label;
     }
 
-    private JTextField createStyledTextField() {
-        JTextField textField = new JTextField();
-        textField.setFont(new Font("Segoe UI", Font.PLAIN, 14));
-        textField.setBorder(BorderFactory.createCompoundBorder(
-                BorderFactory.createLineBorder(new Color(200, 200, 220)),
-                BorderFactory.createEmptyBorder(5, 10, 5, 10)
-        ));
-        textField.setBackground(Color.WHITE);
-        return textField;
-    }
-
-    private JComboBox<String> createStyledComboBox(String[] items) {
-        JComboBox<String> comboBox = new JComboBox<>(items);
-        comboBox.setFont(new Font("Segoe UI", Font.PLAIN, 14));
-        comboBox.setBackground(Color.WHITE);
-        comboBox.setRenderer(new DefaultListCellRenderer() {
-            public Component getListCellRendererComponent(JList<?> list, Object value, int index,
-                                                          boolean isSelected, boolean cellHasFocus) {
-                JLabel label = (JLabel) super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
-                label.setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 10));
-                return label;
-            }
-        });
-        return comboBox;
-    }
-
-    private JButton createStyledButton(String text, Color normalColor, Color hoverColor) {
-        JButton button = new JButton(text);
-        button.setFont(new Font("Segoe UI", Font.BOLD, 16));
-        button.setBackground(normalColor);
-        button.setForeground(Color.WHITE);
-        button.setFocusPainted(false);
-        button.setCursor(new Cursor(Cursor.HAND_CURSOR));
-
-        // Hover effect
-        button.addMouseListener(new MouseAdapter() {
-            public void mouseEntered(MouseEvent e) {
-                button.setBackground(hoverColor);
+    private JTextField createRoundedTextField() {
+        JTextField field = new JTextField() {
+            protected void paintComponent(Graphics g) {
+                super.paintComponent(g);
+                setOpaque(false);
             }
 
-            public void mouseExited(MouseEvent e) {
-                button.setBackground(normalColor);
+            protected void paintBorder(Graphics g) {
+                Graphics2D g2 = (Graphics2D) g;
+                g2.setColor(new Color(200, 200, 220));
+                g2.drawRoundRect(0, 0, getWidth() - 1, getHeight() - 1, 15, 15);
             }
-        });
-        return button;
+        };
+        field.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+        field.setBorder(BorderFactory.createEmptyBorder(5, 10, 5, 10));
+        field.setBackground(Color.WHITE);
+        return field;
     }
 
+    private JComboBox<String> createRoundedComboBox(String[] items) {
+        JComboBox<String> combo = new JComboBox<>(items);
+        combo.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+        combo.setBackground(Color.WHITE);
+        combo.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
+        return combo;
+    }
+
+    private JButton createRoundedButton(String text, Color normal, Color hover) {
+        JButton btn = new JButton(text) {
+            protected void paintComponent(Graphics g) {
+                Graphics2D g2 = (Graphics2D) g.create();
+                g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+                g2.setColor(getModel().isRollover() ? hover : normal);
+                g2.fillRoundRect(0, 0, getWidth(), getHeight(), 20, 20);
+                super.paintComponent(g);
+                g2.dispose();
+            }
+        };
+        btn.setFont(new Font("Segoe UI", Font.BOLD, 15));
+        btn.setFocusPainted(false);
+        btn.setContentAreaFilled(false);
+        btn.setForeground(Color.WHITE);
+        btn.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        return btn;
+    }
+
+    // --- Functionality ---
     private void calculateFare() {
         try {
             String source = (String) sourceBox.getSelectedItem();
@@ -266,8 +257,7 @@ public class BusTicketBooking extends JFrame {
 
             int passengers = Integer.parseInt(txtPassengers.getText());
             if (passengers <= 0 || passengers > 10) {
-                JOptionPane.showMessageDialog(this, "Enter valid number of passengers (1-10)!",
-                        "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Enter valid number of passengers (1–10)!", "Error", JOptionPane.ERROR_MESSAGE);
                 return;
             }
 
@@ -280,7 +270,7 @@ public class BusTicketBooking extends JFrame {
             int distanceFare = Math.abs(sourceBox.getSelectedIndex() - destinationBox.getSelectedIndex()) * 100;
             int total = (baseFare + distanceFare) * passengers;
             txtFare.setText("₹" + total);
-        } catch (Exception ex) {
+        } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Invalid input!", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
@@ -312,21 +302,21 @@ public class BusTicketBooking extends JFrame {
         String seatNum = (1 + new Random().nextInt(40)) + Character.toString('A' + new Random().nextInt(5));
 
         String ticket = String.format("""
-                ╔══════════════════════════════════════╗
-                ║           BUS TICKET RECEIPT         ║
-                ╠══════════════════════════════════════╣
-                ║  Ticket ID: %s                ║
-                ║  Passenger: %-25s ║
-                ║  Phone: %-28s ║
-                ║  Route: %s to %-18s ║
-                ║  Date: %-28s ║
-                ║  Time: %-28s ║
-                ║  Seat: %s (%s)              ║
-                ║  Payment: %-25s ║
-                ║  Total Fare: %-22s ║
-                ╠══════════════════════════════════════╣
-                ║        Thank You & Safe Journey!     ║
-                ╚══════════════════════════════════════╝
+                ╔════════════════════════════════════════════════════╗
+                ║                  🚌 BUS TICKET RECEIPT             ║
+                ╠════════════════════════════════════════════════════╣
+                ║  Ticket ID: %-40s║
+                ║  Passenger: %-40s║
+                ║  Phone: %-44s║
+                ║  Route: %-10s ➜ %-26s║
+                ║  Date: %-44s║
+                ║  Time: %-44s║
+                ║  Seat: %-10s (%s)                           ║
+                ║  Payment: %-40s║
+                ║  Total Fare: %-38s║
+                ╠════════════════════════════════════════════════════╣
+                ║         Thank You & Safe Journey! 🌟              ║
+                ╚════════════════════════════════════════════════════╝
                 """, ticketID, name, phone, source, dest, date, time, seat, seatNum, pay, fare);
 
         try {
@@ -337,9 +327,9 @@ public class BusTicketBooking extends JFrame {
             fw.write(ticket);
             fw.close();
 
-            JOptionPane.showMessageDialog(this, "🎟 Ticket Booked Successfully!\nSaved as: " + fileName,
-                    "Success", JOptionPane.INFORMATION_MESSAGE);
             showTicketPopup(ticket);
+            JOptionPane.showMessageDialog(this, "🎟 Ticket booked successfully!\nSaved as: " + fileName,
+                    "Success", JOptionPane.INFORMATION_MESSAGE);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this, "Error saving ticket: " + e.getMessage(),
                     "Error", JOptionPane.ERROR_MESSAGE);
@@ -351,9 +341,10 @@ public class BusTicketBooking extends JFrame {
         area.setEditable(false);
         area.setFont(new Font("Consolas", Font.BOLD, 13));
         area.setBackground(new Color(255, 255, 240));
-        JScrollPane scrollPane = new JScrollPane(area);
-        scrollPane.setPreferredSize(new Dimension(500, 400));
-        JOptionPane.showMessageDialog(this, scrollPane, "Booking Confirmation", JOptionPane.INFORMATION_MESSAGE);
+        area.setBorder(BorderFactory.createLineBorder(Color.DARK_GRAY, 2, true));
+        JScrollPane scroll = new JScrollPane(area);
+        scroll.setPreferredSize(new Dimension(550, 420));
+        JOptionPane.showMessageDialog(this, scroll, "🎟 Booking Confirmation", JOptionPane.INFORMATION_MESSAGE);
     }
 
     public static void main(String[] args) {
